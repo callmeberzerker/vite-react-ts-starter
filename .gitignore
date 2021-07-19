@@ -1,0 +1,14 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+
+# idea
+.idea/**
+*.iml
+!.idea/prettier.xml
+!.idea/codeStyles/codeStyleConfig.xml
+
+# generated graphql types
+src/@types/graphql.d.ts

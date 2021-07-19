@@ -1,0 +1,16 @@
+// vite.config.ts
+import graphqlPlugin from '@rollup/plugin-graphql'
+import reactRefresh from '@vitejs/plugin-react-refresh'
+import path from 'path'
+import { defineConfig } from 'vite'
+import macrosPlugin from 'vite-plugin-babel-macros'
+import reactJsx from 'vite-react-jsx'
+var projectRootDir = path.resolve('E:\\Projects\\vite-react-ts-starter')
+var vite_config_default = defineConfig({
+  plugins: [macrosPlugin(), reactJsx(), reactRefresh(), graphqlPlugin()],
+  resolve: {
+    alias: [{ find: 'src', replacement: path.resolve(projectRootDir, 'src') }],
+  },
+})
+export { vite_config_default as default }
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsidml0ZS5jb25maWcudHMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImltcG9ydCBncmFwaHFsUGx1Z2luIGZyb20gJ0Byb2xsdXAvcGx1Z2luLWdyYXBocWwnXG5pbXBvcnQgcmVhY3RSZWZyZXNoIGZyb20gJ0B2aXRlanMvcGx1Z2luLXJlYWN0LXJlZnJlc2gnXG5pbXBvcnQgcGF0aCBmcm9tICdwYXRoJ1xuaW1wb3J0IHsgZGVmaW5lQ29uZmlnIH0gZnJvbSAndml0ZSdcbmltcG9ydCBtYWNyb3NQbHVnaW4gZnJvbSAndml0ZS1wbHVnaW4tYmFiZWwtbWFjcm9zJ1xuaW1wb3J0IHJlYWN0SnN4IGZyb20gJ3ZpdGUtcmVhY3QtanN4J1xuY29uc3QgcHJvamVjdFJvb3REaXIgPSBwYXRoLnJlc29sdmUoXCJFOlxcXFxQcm9qZWN0c1xcXFx2aXRlLXJlYWN0LXRzLXN0YXJ0ZXJcIilcbi8vIGh0dHBzOi8vdml0ZWpzLmRldi9jb25maWcvXG5leHBvcnQgZGVmYXVsdCBkZWZpbmVDb25maWcoe1xuICBwbHVnaW5zOiBbbWFjcm9zUGx1Z2luKCksIHJlYWN0SnN4KCksIHJlYWN0UmVmcmVzaCgpLCBncmFwaHFsUGx1Z2luKCldLFxuICByZXNvbHZlOiB7XG4gICAgYWxpYXM6IFt7IGZpbmQ6ICdzcmMnLCByZXBsYWNlbWVudDogcGF0aC5yZXNvbHZlKHByb2plY3RSb290RGlyLCAnc3JjJykgfV0sXG4gIH0sXG59KVxuIl0sCiAgIm1hcHBpbmdzIjogIjtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLElBQU0saUJBQWlCLEtBQUssUUFBUTtBQUVwQyxJQUFPLHNCQUFRLGFBQWE7QUFBQSxFQUMxQixTQUFTLENBQUMsZ0JBQWdCLFlBQVksZ0JBQWdCO0FBQUEsRUFDdEQsU0FBUztBQUFBLElBQ1AsT0FBTyxDQUFDLEVBQUUsTUFBTSxPQUFPLGFBQWEsS0FBSyxRQUFRLGdCQUFnQjtBQUFBO0FBQUE7IiwKICAibmFtZXMiOiBbXQp9Cg==

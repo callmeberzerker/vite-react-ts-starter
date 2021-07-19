@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "graphql.vscode-graphql",
+    "esbenp.prettier-vscode",
+    "kamikillerto.vscode-colorize",
+    "dbaeumer.vscode-eslint",
+    "jpoissonnier.vscode-styled-components"
+  ]
+}
