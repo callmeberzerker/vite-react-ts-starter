@@ -1,6 +1,6 @@
 {
   "typescript.tsdk": "node_modules\\typescript\\lib",
-  "cSpell.words": ["Todos", "codegen", "dotenv", "flowtype", "reexecute", "wonka"],
+  "cSpell.words": ["Todos", "VITE", "codegen", "dotenv", "flowtype", "reexecute", "wonka"],
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
