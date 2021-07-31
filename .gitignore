@@ -11,6 +11,3 @@ yarn.lock
 *.iml
 !.idea/prettier.xml
 !.idea/codeStyles/codeStyleConfig.xml
-
-# generated graphql types
-src/@types/gen/graphql.d.ts
