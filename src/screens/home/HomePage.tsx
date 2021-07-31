@@ -16,6 +16,7 @@ const TodoFrag = gql`
 const fetchTodos = gql`
   query MyQuery {
     todo {
+      id
       ...TodoShared
     }
   }

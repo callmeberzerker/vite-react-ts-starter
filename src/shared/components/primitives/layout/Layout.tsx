@@ -13,6 +13,7 @@ export const Layout = (): ReactElement => {
     <div>
       <LinkStyled to="/">Home</LinkStyled>
       <LinkStyled to="/about">About</LinkStyled>
+      <LinkStyled to="/forms">Forms</LinkStyled>
       <Outlet />
     </div>
   )
