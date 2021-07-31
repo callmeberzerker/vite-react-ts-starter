@@ -11,4 +11,4 @@ dist-ssr
 !.idea/codeStyles/codeStyleConfig.xml
 
 # generated graphql types
-src/@types/graphql.d.ts
+src/@types/gen/graphql.d.ts

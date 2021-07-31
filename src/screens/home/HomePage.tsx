@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react'
-import { Query_Root } from 'src/@types/graphql'
+import { Query_Root } from 'src/@types/gen/graphql'
 import styled from 'styled-components/macro'
 import { gql, useQuery } from 'urql'
 
