@@ -1,463 +1,348 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
 schema {
-  query: query_root
-  mutation: mutation_root
-  subscription: subscription_root
+    query: query_root
+    mutation: mutation_root
+    subscription: subscription_root
 }
 
-"""whether this query should be cached (Hasura Cloud only)"""
-directive @cached(
-  """measured in seconds"""
-  ttl: Int! = 60
-
-  """refresh the cache entry"""
-  refresh: Boolean! = false
-) on QUERY
-
-"""
-Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'.
-"""
-input Boolean_comparison_exp {
-  _eq: Boolean
-  _gt: Boolean
-  _gte: Boolean
-  _in: [Boolean!]
-  _is_null: Boolean
-  _lt: Boolean
-  _lte: Boolean
-  _neq: Boolean
-  _nin: [Boolean!]
-}
-
-"""
-Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'.
-"""
-input Int_comparison_exp {
-  _eq: Int
-  _gt: Int
-  _gte: Int
-  _in: [Int!]
-  _is_null: Boolean
-  _lt: Int
-  _lte: Int
-  _neq: Int
-  _nin: [Int!]
-}
-
-"""
-Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
-"""
-input String_comparison_exp {
-  _eq: String
-  _gt: String
-  _gte: String
-
-  """does the column match the given case-insensitive pattern"""
-  _ilike: String
-  _in: [String!]
-
-  """
-  does the column match the given POSIX regular expression, case insensitive
-  """
-  _iregex: String
-  _is_null: Boolean
-
-  """does the column match the given pattern"""
-  _like: String
-  _lt: String
-  _lte: String
-  _neq: String
-
-  """does the column NOT match the given case-insensitive pattern"""
-  _nilike: String
-  _nin: [String!]
-
-  """
-  does the column NOT match the given POSIX regular expression, case insensitive
-  """
-  _niregex: String
-
-  """does the column NOT match the given pattern"""
-  _nlike: String
-
-  """
-  does the column NOT match the given POSIX regular expression, case sensitive
-  """
-  _nregex: String
-
-  """does the column NOT match the given SQL regular expression"""
-  _nsimilar: String
-
-  """
-  does the column match the given POSIX regular expression, case sensitive
-  """
-  _regex: String
-
-  """does the column match the given SQL regular expression"""
-  _similar: String
-}
-
-"""mutation root"""
+"mutation root"
 type mutation_root {
-  """
-  delete data from the table: "todo"
-  """
-  delete_todo(
-    """filter the rows which have to be deleted"""
-    where: todo_bool_exp!
-  ): todo_mutation_response
-
-  """
-  delete single row from the table: "todo"
-  """
-  delete_todo_by_pk(id: Int!): todo
-
-  """
-  insert data into the table: "todo"
-  """
-  insert_todo(
-    """the rows to be inserted"""
-    objects: [todo_insert_input!]!
-
-    """on conflict condition"""
-    on_conflict: todo_on_conflict
-  ): todo_mutation_response
-
-  """
-  insert a single row into the table: "todo"
-  """
-  insert_todo_one(
-    """the row to be inserted"""
-    object: todo_insert_input!
-
-    """on conflict condition"""
-    on_conflict: todo_on_conflict
-  ): todo
-
-  """
-  update data of the table: "todo"
-  """
-  update_todo(
-    """increments the numeric columns with given value of the filtered values"""
-    _inc: todo_inc_input
-
-    """sets the columns of the filtered rows to the given values"""
-    _set: todo_set_input
-
-    """filter the rows which have to be updated"""
-    where: todo_bool_exp!
-  ): todo_mutation_response
-
-  """
-  update single row of the table: "todo"
-  """
-  update_todo_by_pk(
-    """increments the numeric columns with given value of the filtered values"""
-    _inc: todo_inc_input
-
-    """sets the columns of the filtered rows to the given values"""
-    _set: todo_set_input
-    pk_columns: todo_pk_columns_input!
-  ): todo
-}
-
-"""column ordering options"""
-enum order_by {
-  """in ascending order, nulls last"""
-  asc
-
-  """in ascending order, nulls first"""
-  asc_nulls_first
-
-  """in ascending order, nulls last"""
-  asc_nulls_last
-
-  """in descending order, nulls first"""
-  desc
-
-  """in descending order, nulls first"""
-  desc_nulls_first
-
-  """in descending order, nulls last"""
-  desc_nulls_last
+    "delete data from the table: \"todo\""
+    delete_todo(
+        "filter the rows which have to be deleted"
+        where: todo_bool_exp!
+    ): todo_mutation_response
+    "delete single row from the table: \"todo\""
+    delete_todo_by_pk(id: Int!): todo
+    "insert data into the table: \"todo\""
+    insert_todo(
+        "the rows to be inserted"
+        objects: [todo_insert_input!]!,
+        "on conflict condition"
+        on_conflict: todo_on_conflict
+    ): todo_mutation_response
+    "insert a single row into the table: \"todo\""
+    insert_todo_one(
+        "the row to be inserted"
+        object: todo_insert_input!,
+        "on conflict condition"
+        on_conflict: todo_on_conflict
+    ): todo
+    "update data of the table: \"todo\""
+    update_todo(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: todo_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: todo_set_input,
+        "filter the rows which have to be updated"
+        where: todo_bool_exp!
+    ): todo_mutation_response
+    "update single row of the table: \"todo\""
+    update_todo_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: todo_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: todo_set_input,
+        pk_columns: todo_pk_columns_input!
+    ): todo
 }
 
 type query_root {
-  """
-  fetch data from the table: "todo"
-  """
-  todo(
-    """distinct select on columns"""
-    distinct_on: [todo_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [todo_order_by!]
-
-    """filter the rows returned"""
-    where: todo_bool_exp
-  ): [todo!]!
-
-  """
-  fetch aggregated fields from the table: "todo"
-  """
-  todo_aggregate(
-    """distinct select on columns"""
-    distinct_on: [todo_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [todo_order_by!]
-
-    """filter the rows returned"""
-    where: todo_bool_exp
-  ): todo_aggregate!
-
-  """fetch data from the table: "todo" using primary key columns"""
-  todo_by_pk(id: Int!): todo
+    "fetch data from the table: \"todo\""
+    todo(
+        "distinct select on columns"
+        distinct_on: [todo_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [todo_order_by!],
+        "filter the rows returned"
+        where: todo_bool_exp
+    ): [todo!]!
+    "fetch aggregated fields from the table: \"todo\""
+    todo_aggregate(
+        "distinct select on columns"
+        distinct_on: [todo_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [todo_order_by!],
+        "filter the rows returned"
+        where: todo_bool_exp
+    ): todo_aggregate!
+    "fetch data from the table: \"todo\" using primary key columns"
+    todo_by_pk(id: Int!): todo
 }
 
 type subscription_root {
-  """
-  fetch data from the table: "todo"
-  """
-  todo(
-    """distinct select on columns"""
-    distinct_on: [todo_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [todo_order_by!]
-
-    """filter the rows returned"""
-    where: todo_bool_exp
-  ): [todo!]!
-
-  """
-  fetch aggregated fields from the table: "todo"
-  """
-  todo_aggregate(
-    """distinct select on columns"""
-    distinct_on: [todo_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [todo_order_by!]
-
-    """filter the rows returned"""
-    where: todo_bool_exp
-  ): todo_aggregate!
-
-  """fetch data from the table: "todo" using primary key columns"""
-  todo_by_pk(id: Int!): todo
+    "fetch data from the table: \"todo\""
+    todo(
+        "distinct select on columns"
+        distinct_on: [todo_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [todo_order_by!],
+        "filter the rows returned"
+        where: todo_bool_exp
+    ): [todo!]!
+    "fetch aggregated fields from the table: \"todo\""
+    todo_aggregate(
+        "distinct select on columns"
+        distinct_on: [todo_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [todo_order_by!],
+        "filter the rows returned"
+        where: todo_bool_exp
+    ): todo_aggregate!
+    "fetch data from the table: \"todo\" using primary key columns"
+    todo_by_pk(id: Int!): todo
 }
 
-"""
-columns and relationships of "todo"
-"""
+"columns and relationships of \"todo\""
 type todo {
-  description: String!
-  done: Boolean
-  id: Int!
+    description: String!
+    done: Boolean
+    id: Int!
 }
 
-"""
-aggregated selection of "todo"
-"""
+"aggregated selection of \"todo\""
 type todo_aggregate {
-  aggregate: todo_aggregate_fields
-  nodes: [todo!]!
+    aggregate: todo_aggregate_fields
+    nodes: [todo!]!
 }
 
-"""
-aggregate fields of "todo"
-"""
+"aggregate fields of \"todo\""
 type todo_aggregate_fields {
-  avg: todo_avg_fields
-  count(columns: [todo_select_column!], distinct: Boolean): Int!
-  max: todo_max_fields
-  min: todo_min_fields
-  stddev: todo_stddev_fields
-  stddev_pop: todo_stddev_pop_fields
-  stddev_samp: todo_stddev_samp_fields
-  sum: todo_sum_fields
-  var_pop: todo_var_pop_fields
-  var_samp: todo_var_samp_fields
-  variance: todo_variance_fields
+    avg: todo_avg_fields
+    count(columns: [todo_select_column!], distinct: Boolean): Int!
+    max: todo_max_fields
+    min: todo_min_fields
+    stddev: todo_stddev_fields
+    stddev_pop: todo_stddev_pop_fields
+    stddev_samp: todo_stddev_samp_fields
+    sum: todo_sum_fields
+    var_pop: todo_var_pop_fields
+    var_samp: todo_var_samp_fields
+    variance: todo_variance_fields
 }
 
-"""aggregate avg on columns"""
+"aggregate avg on columns"
 type todo_avg_fields {
-  id: Float
+    id: Float
 }
 
-"""
-Boolean expression to filter rows from the table "todo". All fields are combined with a logical 'AND'.
-"""
-input todo_bool_exp {
-  _and: [todo_bool_exp!]
-  _not: todo_bool_exp
-  _or: [todo_bool_exp!]
-  description: String_comparison_exp
-  done: Boolean_comparison_exp
-  id: Int_comparison_exp
-}
-
-"""
-unique or primary key constraints on table "todo"
-"""
-enum todo_constraint {
-  """unique or primary key constraint"""
-  todo_pkey
-}
-
-"""
-input type for incrementing numeric columns in table "todo"
-"""
-input todo_inc_input {
-  id: Int
-}
-
-"""
-input type for inserting data into table "todo"
-"""
-input todo_insert_input {
-  description: String
-  done: Boolean
-  id: Int
-}
-
-"""aggregate max on columns"""
+"aggregate max on columns"
 type todo_max_fields {
-  description: String
-  id: Int
+    description: String
+    id: Int
 }
 
-"""aggregate min on columns"""
+"aggregate min on columns"
 type todo_min_fields {
-  description: String
-  id: Int
+    description: String
+    id: Int
 }
 
-"""
-response of any mutation on the table "todo"
-"""
+"response of any mutation on the table \"todo\""
 type todo_mutation_response {
-  """number of rows affected by the mutation"""
-  affected_rows: Int!
-
-  """data from the rows affected by the mutation"""
-  returning: [todo!]!
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [todo!]!
 }
 
-"""
-on conflict condition type for table "todo"
-"""
-input todo_on_conflict {
-  constraint: todo_constraint!
-  update_columns: [todo_update_column!]! = []
-  where: todo_bool_exp
-}
-
-"""Ordering options when selecting data from "todo"."""
-input todo_order_by {
-  description: order_by
-  done: order_by
-  id: order_by
-}
-
-"""primary key columns input for table: todo"""
-input todo_pk_columns_input {
-  id: Int!
-}
-
-"""
-select columns of table "todo"
-"""
-enum todo_select_column {
-  """column name"""
-  description
-
-  """column name"""
-  done
-
-  """column name"""
-  id
-}
-
-"""
-input type for updating data in table "todo"
-"""
-input todo_set_input {
-  description: String
-  done: Boolean
-  id: Int
-}
-
-"""aggregate stddev on columns"""
+"aggregate stddev on columns"
 type todo_stddev_fields {
-  id: Float
+    id: Float
 }
 
-"""aggregate stddev_pop on columns"""
+"aggregate stddev_pop on columns"
 type todo_stddev_pop_fields {
-  id: Float
+    id: Float
 }
 
-"""aggregate stddev_samp on columns"""
+"aggregate stddev_samp on columns"
 type todo_stddev_samp_fields {
-  id: Float
+    id: Float
 }
 
-"""aggregate sum on columns"""
+"aggregate sum on columns"
 type todo_sum_fields {
-  id: Int
+    id: Int
 }
 
-"""
-update columns of table "todo"
-"""
-enum todo_update_column {
-  """column name"""
-  description
-
-  """column name"""
-  done
-
-  """column name"""
-  id
-}
-
-"""aggregate var_pop on columns"""
+"aggregate var_pop on columns"
 type todo_var_pop_fields {
-  id: Float
+    id: Float
 }
 
-"""aggregate var_samp on columns"""
+"aggregate var_samp on columns"
 type todo_var_samp_fields {
-  id: Float
+    id: Float
 }
 
-"""aggregate variance on columns"""
+"aggregate variance on columns"
 type todo_variance_fields {
-  id: Float
+    id: Float
+}
+
+"column ordering options"
+enum order_by {
+    "in ascending order, nulls last"
+    asc
+    "in ascending order, nulls first"
+    asc_nulls_first
+    "in ascending order, nulls last"
+    asc_nulls_last
+    "in descending order, nulls first"
+    desc
+    "in descending order, nulls first"
+    desc_nulls_first
+    "in descending order, nulls last"
+    desc_nulls_last
+}
+
+"unique or primary key constraints on table \"todo\""
+enum todo_constraint {
+    "unique or primary key constraint"
+    todo_pkey
+}
+
+"select columns of table \"todo\""
+enum todo_select_column {
+    "column name"
+    description
+    "column name"
+    done
+    "column name"
+    id
+}
+
+"update columns of table \"todo\""
+enum todo_update_column {
+    "column name"
+    description
+    "column name"
+    done
+    "column name"
+    id
+}
+
+"Boolean expression to compare columns of type \"Boolean\". All fields are combined with logical 'AND'."
+input Boolean_comparison_exp {
+    _eq: Boolean
+    _gt: Boolean
+    _gte: Boolean
+    _in: [Boolean!]
+    _is_null: Boolean
+    _lt: Boolean
+    _lte: Boolean
+    _neq: Boolean
+    _nin: [Boolean!]
+}
+
+"Boolean expression to compare columns of type \"Int\". All fields are combined with logical 'AND'."
+input Int_comparison_exp {
+    _eq: Int
+    _gt: Int
+    _gte: Int
+    _in: [Int!]
+    _is_null: Boolean
+    _lt: Int
+    _lte: Int
+    _neq: Int
+    _nin: [Int!]
+}
+
+"Boolean expression to compare columns of type \"String\". All fields are combined with logical 'AND'."
+input String_comparison_exp {
+    _eq: String
+    _gt: String
+    _gte: String
+    "does the column match the given case-insensitive pattern"
+    _ilike: String
+    _in: [String!]
+    "does the column match the given POSIX regular expression, case insensitive"
+    _iregex: String
+    _is_null: Boolean
+    "does the column match the given pattern"
+    _like: String
+    _lt: String
+    _lte: String
+    _neq: String
+    "does the column NOT match the given case-insensitive pattern"
+    _nilike: String
+    _nin: [String!]
+    "does the column NOT match the given POSIX regular expression, case insensitive"
+    _niregex: String
+    "does the column NOT match the given pattern"
+    _nlike: String
+    "does the column NOT match the given POSIX regular expression, case sensitive"
+    _nregex: String
+    "does the column NOT match the given SQL regular expression"
+    _nsimilar: String
+    "does the column match the given POSIX regular expression, case sensitive"
+    _regex: String
+    "does the column match the given SQL regular expression"
+    _similar: String
+}
+
+"Boolean expression to filter rows from the table \"todo\". All fields are combined with a logical 'AND'."
+input todo_bool_exp {
+    _and: [todo_bool_exp!]
+    _not: todo_bool_exp
+    _or: [todo_bool_exp!]
+    description: String_comparison_exp
+    done: Boolean_comparison_exp
+    id: Int_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"todo\""
+input todo_inc_input {
+    id: Int
+}
+
+"input type for inserting data into table \"todo\""
+input todo_insert_input {
+    description: String
+    done: Boolean
+    id: Int
+}
+
+"on conflict condition type for table \"todo\""
+input todo_on_conflict {
+    constraint: todo_constraint!
+    update_columns: [todo_update_column!]! = []
+    where: todo_bool_exp
+}
+
+"Ordering options when selecting data from \"todo\"."
+input todo_order_by {
+    description: order_by
+    done: order_by
+    id: order_by
+}
+
+"primary key columns input for table: todo"
+input todo_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"todo\""
+input todo_set_input {
+    description: String
+    done: Boolean
+    id: Int
 }
