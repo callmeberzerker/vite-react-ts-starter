@@ -5,14 +5,21 @@ import { gql, useQuery } from 'urql'
 
 const Header = styled.h1``
 
+const TodoFrag = gql`
+  fragment TodoShared on todo {
+    id
+    description
+    done
+  }
+`
+
 const fetchTodos = gql`
   query MyQuery {
     todo {
-      id
-      done
-      description
+      ...TodoShared
     }
   }
+  ${TodoFrag}
 `
 
 export const HomePage = (): ReactElement => {

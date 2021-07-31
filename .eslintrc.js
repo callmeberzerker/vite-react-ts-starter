@@ -50,7 +50,7 @@ module.exports = {
     'graphql/template-strings': [
       'error',
       {
-        env: 'literal',
+        env: 'apollo',
         schemaString: graphQlSchema,
         tagName: 'gql',
       },
