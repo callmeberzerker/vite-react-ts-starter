@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FiMoon, FiSun } from 'react-icons/fi'
-import { darkTheme, GlobalStyles, lightTheme } from 'src/shared/theme/theme'
+import { createTheme, GlobalStyles } from 'src/shared/theme/theme'
 import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components/macro'
 
 const getInitialTheme = (): 'dark' | 'light' => {
@@ -17,7 +17,7 @@ export const Toggler = styled.button`
   height: 35px;
   align-items: center;
   justify-content: center;
-  color: ${({ theme }) => theme.global.text};
+  color: ${({ theme }) => theme.colors.global.text};
   background-color: transparent;
   transition: all 0.25s;
   border: none;
@@ -37,7 +37,7 @@ export const ThemeProvider: React.FC = ({ children }) => {
   const icon = theme === 'light' ? <FiMoon size={26} /> : <FiSun size={26} />
 
   return (
-    <StyledThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <StyledThemeProvider theme={createTheme(theme)}>
       <GlobalStyles />
       <Toggler onClick={toggleTheme}>{icon}</Toggler>
       {children}

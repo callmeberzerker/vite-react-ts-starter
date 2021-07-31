@@ -64,12 +64,14 @@ export default styled.div`
       flex-flow: row nowrap;
       line-height: 2em;
       margin: 5px;
+
       & > label {
-        color: #333;
+        color: #f4b037;
         width: 110px;
         font-size: 1em;
         line-height: 32px;
       }
+
       & > input,
       & > select,
       & > textarea {
@@ -80,34 +82,43 @@ export default styled.div`
         border: 1px solid #ccc;
         border-radius: 3px;
       }
+
       & > input[type='checkbox'] {
         margin-top: 7px;
       }
+
       & > div {
         margin-left: 16px;
+
         & > label {
           display: block;
+
           & > input {
             margin-right: 3px;
           }
         }
       }
     }
+
     & > .buttons {
       display: flex;
       flex-flow: row nowrap;
       justify-content: center;
       margin-top: 15px;
     }
+
     button {
       margin: 0 10px;
+
       &[type='submit'] {
         ${btnPrimary};
       }
+
       &[type='button'] {
         ${btnDefault};
       }
     }
+
     pre {
       border: 1px solid #ccc;
       background: rgba(0, 0, 0, 0.1);
