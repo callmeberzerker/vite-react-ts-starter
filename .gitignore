@@ -7,7 +7,7 @@ package-lock.json
 yarn.lock
 
 # idea
-.idea/**
+.idea
 *.iml
 !.idea/prettier.xml
 !.idea/codeStyles/codeStyleConfig.xml

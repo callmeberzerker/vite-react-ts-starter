@@ -1,6 +1,7 @@
 import Styles from './Styles'
-import { Form, Field } from 'react-final-form'
+import { Field, Form } from 'react-final-form'
 import { ReactElement } from 'react'
+import { TextField } from 'src/shared/components/form/control/number/TextField'
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
@@ -28,6 +29,9 @@ export const FormsPage = (): ReactElement => {
             <div>
               <label>Last Name</label>
               <Field name="lastName" component="input" type="text" placeholder="Last Name" />
+            </div>
+            <div>
+              <TextField name="formattedNumber" label="Formatted number" type="tel" />
             </div>
             <div>
               <label>Employed</label>
